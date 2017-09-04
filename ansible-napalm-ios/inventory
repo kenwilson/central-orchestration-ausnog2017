@@ -1,0 +1,12 @@
+# Cisco CPE devices
+[cisco-cpe]
+r1 host=192.168.82.76 hostname=r1-cpe.opengear.com
+r2 host=192.168.82.77 hostname=r2-cpe.opengear.com
+
+# Default variables for Cisco devices managed via NAPALM
+[cisco-cpe:vars]
+username=admin
+password=default
+dev_os=ios
+ansible_connection=local
+

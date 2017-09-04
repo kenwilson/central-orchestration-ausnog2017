@@ -1,0 +1,179 @@
+
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname {{ hostname }}
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$WBBw$3WDO6jJHSwFtuw4Wk38Zv/
+enable password notdefault
+!
+no aaa new-model
+no ip routing
+!
+!
+no ip cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username admin privilege 15 password 0 default
+!
+!
+ip ssh rsa keypair-name test-box.kenw.bne.opengear.com
+ip ssh version 2
+ip scp server enable
+! 
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address dhcp
+ no ip route-cache
+ duplex full
+ speed auto
+ no cdp enable
+ no mop enabled
+!
+interface FastEthernet0/1
+ no ip address
+ no ip route-cache
+ shutdown
+ duplex auto
+ speed auto
+ no cdp enable
+!
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+snmp-server community secret RO
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps vrrp
+snmp-server enable traps ds1
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps casa
+snmp-server enable traps gatekeeper
+snmp-server enable traps xgcp
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps director server-up server-down
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps ds3
+snmp-server enable traps atm subif
+snmp-server enable traps channel
+snmp-server enable traps ima
+snmp-server enable traps srp
+snmp-server enable traps flash insertion removal
+snmp-server enable traps hsrp
+snmp-server enable traps config
+snmp-server enable traps entity
+snmp-server enable traps fru-ctrl
+snmp-server enable traps cpu threshold
+snmp-server enable traps config-copy
+snmp-server enable traps envmon
+snmp-server enable traps aaa_server
+snmp-server enable traps bgp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface-old
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps ipmulticast
+snmp-server enable traps mvpn
+snmp-server enable traps msdp
+snmp-server enable traps rsvp
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps syslog
+snmp-server enable traps rtr
+snmp-server enable traps vsimaster
+snmp-server enable traps mpls ldp
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls vpn
+snmp-server enable traps cnpd
+snmp-server enable traps snasw alert isr topology cp-cp port link dlus
+snmp-server enable traps stun
+snmp-server enable traps dlsw
+snmp-server enable traps bstun
+snmp-server enable traps pppoe
+snmp-server enable traps l2tun session
+snmp-server enable traps ipmobile
+snmp-server enable traps dial
+snmp-server enable traps dsp card-status
+snmp-server enable traps isakmp policy add
+snmp-server enable traps isakmp policy delete
+snmp-server enable traps isakmp tunnel start
+snmp-server enable traps isakmp tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps event-manager
+snmp-server enable traps rf
+snmp-server enable traps alarms
+snmp-server enable traps voice poor-qov
+snmp-server enable traps voice fallback
+snmp-server enable traps dnis
+snmp-server host 192.168.82.1 pubic  envmon snmp
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ privilege level 15
+ password default
+ login local
+ transport input telnet ssh
+!
+no process cpu extended
+no process cpu autoprofile hog
+!
+end

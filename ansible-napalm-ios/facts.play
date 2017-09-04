@@ -1,0 +1,17 @@
+---
+
+- name: Get Device Facts
+  hosts: cisco-cpe
+
+  tasks:
+    - name: Get Facts
+      napalm_get_facts: 
+            hostname: "{{ host }}"
+            username: "{{ username }}"
+            password: "{{ password }}"
+            dev_os: "{{ dev_os }}"
+            filter: 'facts,interfaces,interfaces_ip,mac_address_table'
+      register: results
+
+    - name: print data
+      debug: var=results

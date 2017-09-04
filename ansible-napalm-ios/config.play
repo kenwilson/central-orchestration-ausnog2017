@@ -1,0 +1,20 @@
+---
+
+- name: Apply basic config
+  hosts: cisco-cpe
+
+  tasks:
+    - name: Generate local configuration for hosts
+      local_action: template dest={{ playbook_dir }}/gen-config/initial-{{ hostname }}.conf src={{ playbook_dir }}/source/initial.j2
+
+    - name: Gen .diff file (apply change)
+      napalm_install_config: 
+            hostname: "{{ host }}"
+            username: "{{ username }}"
+            password: "{{ password }}"
+            dev_os: "{{ dev_os }}"
+            config_file: gen-config/initial-{{ hostname }}.conf
+            commit_changes: True
+            replace_config: True
+            diff_file: initial-{{ hostname }}.diff
+            optional_args: {'auto_rollback_on_error': False}
