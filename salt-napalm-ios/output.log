@@ -94,4 +94,26 @@ r1:
     ip: 192.168.82.76
     mac: CA:00:34:CC:00:08
   result: true
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/salt-napalm-ios$ sudo salt r1 state.sls config
+r1:
+----------
+          ID: full_config
+    Function: netconfig.managed
+      Result: True
+     Comment: Configuration changed!
+     Started: 17:33:50.636394
+    Duration: 33202.776 ms
+     Changes:
+              ----------
+              diff:
+                  +hostname r1.cpe.opengear.com
+                  -hostname r1-modified.cpe.opengear.com
+
+Summary for r1
+------------
+Succeeded: 1 (changed=1)
+Failed:    0
+------------
+Total states run:     1
+Total run time:  33.203 s
 
