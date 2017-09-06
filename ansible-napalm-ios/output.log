@@ -57,3 +57,140 @@ Password:
 r2-cpe.opengear.com#exit
 Connection to 192.168.82.77 closed.
 kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ansible-playbook facts.play -i inventory
+
+PLAY [Get Device Facts] ****************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************
+ok: [r2]
+ok: [r1]
+
+TASK [Get Facts] ***********************************************************************************************************
+ok: [r2]
+ok: [r1]
+
+TASK [print data] **********************************************************************************************************
+ok: [r1] => {
+    "results": {
+        "ansible_facts": {
+            "napalm_facts": {
+                "fqdn": "r1-cpe.opengear.com.kenw.bne.opengear.com",
+                "hostname": "r1-cpe.opengear.com",
+                "interface_list": [
+                    "FastEthernet0/0",
+                    "FastEthernet0/1"
+                ],
+                "model": "7206VXR",
+                "os_version": "7200 Software (C7200-A3JK9S-M), Version 12.4(25g), RELEASE SOFTWARE (fc1)",
+                "serial_number": "4279256517",
+                "uptime": 87360,
+                "vendor": "Cisco"
+            },
+            "napalm_fqdn": "r1-cpe.opengear.com.kenw.bne.opengear.com",
+            "napalm_hostname": "r1-cpe.opengear.com",
+            "napalm_interface_list": [
+                "FastEthernet0/0",
+                "FastEthernet0/1"
+            ],
+            "napalm_interfaces": {
+                "FastEthernet0/0": {
+                    "description": "",
+                    "is_enabled": true,
+                    "is_up": true,
+                    "last_flapped": -1.0,
+                    "mac_address": "CA:00:34:CC:00:08",
+                    "speed": 100
+                },
+                "FastEthernet0/1": {
+                    "description": "",
+                    "is_enabled": false,
+                    "is_up": false,
+                    "last_flapped": -1.0,
+                    "mac_address": "CA:00:34:CC:00:06",
+                    "speed": 100
+                }
+            },
+            "napalm_interfaces_ip": {
+                "FastEthernet0/0": {
+                    "ipv4": {
+                        "192.168.82.76": {
+                            "prefix_length": 24
+                        }
+                    }
+                }
+            },
+            "napalm_mac_address_table": [],
+            "napalm_model": "7206VXR",
+            "napalm_os_version": "7200 Software (C7200-A3JK9S-M), Version 12.4(25g), RELEASE SOFTWARE (fc1)",
+            "napalm_serial_number": "4279256517",
+            "napalm_uptime": 87360,
+            "napalm_vendor": "Cisco"
+        },
+        "changed": false
+    }
+}
+ok: [r2] => {
+    "results": {
+        "ansible_facts": {
+            "napalm_facts": {
+                "fqdn": "r2-cpe.opengear.com.kenw.bne.opengear.com",
+                "hostname": "r2-cpe.opengear.com",
+                "interface_list": [
+                    "FastEthernet0/0",
+                    "FastEthernet0/1"
+                ],
+                "model": "7206VXR",
+                "os_version": "7200 Software (C7200-A3JK9S-M), Version 12.4(25g), RELEASE SOFTWARE (fc1)",
+                "serial_number": "4279256517",
+                "uptime": 87360,
+                "vendor": "Cisco"
+            },
+            "napalm_fqdn": "r2-cpe.opengear.com.kenw.bne.opengear.com",
+            "napalm_hostname": "r2-cpe.opengear.com",
+            "napalm_interface_list": [
+                "FastEthernet0/0",
+                "FastEthernet0/1"
+            ],
+            "napalm_interfaces": {
+                "FastEthernet0/0": {
+                    "description": "",
+                    "is_enabled": true,
+                    "is_up": true,
+                    "last_flapped": -1.0,
+                    "mac_address": "CA:01:34:CC:00:08",
+                    "speed": 100
+                },
+                "FastEthernet0/1": {
+                    "description": "",
+                    "is_enabled": false,
+                    "is_up": false,
+                    "last_flapped": -1.0,
+                    "mac_address": "CA:01:34:CC:00:06",
+                    "speed": 100
+                }
+            },
+            "napalm_interfaces_ip": {
+                "FastEthernet0/0": {
+                    "ipv4": {
+                        "192.168.82.77": {
+                            "prefix_length": 24
+                        }
+                    }
+                }
+            },
+            "napalm_mac_address_table": [],
+            "napalm_model": "7206VXR",
+            "napalm_os_version": "7200 Software (C7200-A3JK9S-M), Version 12.4(25g), RELEASE SOFTWARE (fc1)",
+            "napalm_serial_number": "4279256517",
+            "napalm_uptime": 87360,
+            "napalm_vendor": "Cisco"
+        },
+        "changed": false
+    }
+}
+
+PLAY RECAP *****************************************************************************************************************
+r1                         : ok=3    changed=0    unreachable=0    failed=0
+r2                         : ok=3    changed=0    unreachable=0    failed=0
+
+
