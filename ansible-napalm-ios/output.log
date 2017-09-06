@@ -1,0 +1,59 @@
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ansible                                            -playbook config.play -i inventory
+
+PLAY [Apply basic config] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [r1]
+ok: [r2]
+
+TASK [Generate local configuration for hosts] **********************************
+ok: [r2 -> localhost]
+ok: [r1 -> localhost]
+
+TASK [Gen .diff file (apply change)] *******************************************
+ok: [r1]
+ok: [r2]
+
+PLAY RECAP *********************************************************************
+r1                         : ok=3    changed=0    unreachable=0    failed=0
+r2                         : ok=3    changed=0    unreachable=0    failed=0
+
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ssh admin@192.168.82.77
+Password:
+
+r2-cpe.opengear.com#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+r2-cpe.opengear.com(config)#hostname r2-cpe-modified.opengear.com
+% Hostname "R2-CPE-MODIFIED.            " is not a legal LAT node name, Using "CISCO_CC0008"
+r2-cpe-modified.open(config)#end
+r2-cpe-modified.opengear.com#exit
+Connection to 192.168.82.77 closed.
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ansible-playbook config.play -i inventory
+
+PLAY [Apply basic config] **************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************
+ok: [r1]
+ok: [r2]
+
+TASK [Generate local configuration for hosts] ******************************************************************************
+ok: [r1 -> localhost]
+ok: [r2 -> localhost]
+
+TASK [Gen .diff file (apply change)] ***************************************************************************************
+ok: [r1]
+changed: [r2]
+
+PLAY RECAP *****************************************************************************************************************
+r1                         : ok=3    changed=0    unreachable=0    failed=0
+r2                         : ok=3    changed=1    unreachable=0    failed=0
+
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ cat initial-r2-cpe.opengear.com.diff
++hostname r2-cpe.opengear.com
+-hostname r2-cpe-modified.opengear.com
+kenw@kenw-srv:~/src/central-orchestration-ausnog-2017/ansible-napalm-ios$ ssh admin@192.168.82.77
+Password:
+
+r2-cpe.opengear.com#exit
+Connection to 192.168.82.77 closed.
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$
