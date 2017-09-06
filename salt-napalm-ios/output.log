@@ -1,0 +1,97 @@
+
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/salt-napalm-ios$ sudo salt -G 'os:ios' net.load_template salt://router-config.j2 replace=True test=True
+[sudo] password for kenw:
+r2:
+    ----------
+    already_configured:
+        False
+    comment:
+        Configuration discarded.
+    diff:
+        +hostname r2.cpe.opengear.com
+        -hostname r2-cpe.opengear.com
+    loaded_config:
+    result:
+        True
+r1:
+    ----------
+    already_configured:
+        False
+    comment:
+        Configuration discarded.
+    diff:
+        +hostname r1.cpe.opengear.com
+        -hostname r1-cpe.opengear.com
+    loaded_config:
+    result:
+        True
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/salt-napalm-ios$ sudo salt -G 'os:ios' net.load_template salt://router-config.j2 replace=True
+r2:
+    ----------
+    already_configured:
+        False
+    comment:
+    diff:
+        +hostname r2.cpe.opengear.com
+        -hostname r2-cpe.opengear.com
+    loaded_config:
+    result:
+        True
+r1:
+    ----------
+    already_configured:
+        False
+    comment:
+    diff:
+        +hostname r1.cpe.opengear.com
+        -hostname r1-cpe.opengear.com
+    loaded_config:
+    result:
+        True
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/salt-napalm-ios$ sudo salt -G 'os:ios' net.load_template salt://router-config.j2 replace=True
+r1:
+    ----------
+    already_configured:
+        True
+    comment:
+        Already configured.
+    diff:
+    loaded_config:
+    result:
+        True
+r2:
+    ----------
+    already_configured:
+        True
+    comment:
+        Already configured.
+    diff:
+    loaded_config:
+    result:
+        True
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/salt-napalm-ios$ sudo salt --output=yaml  -G 'os:ios' net.arp
+r2:
+  comment: ''
+  out:
+  - age: 0.0
+    interface: FastEthernet0/0
+    ip: 192.168.82.1
+    mac: 00:E0:4C:97:64:41
+  - age: 0.0
+    interface: FastEthernet0/0
+    ip: 192.168.82.77
+    mac: CA:01:34:CC:00:08
+  result: true
+r1:
+  comment: ''
+  out:
+  - age: 0.0
+    interface: FastEthernet0/0
+    ip: 192.168.82.1
+    mac: 00:E0:4C:97:64:41
+  - age: 0.0
+    interface: FastEthernet0/0
+    ip: 192.168.82.76
+    mac: CA:00:34:CC:00:08
+  result: true
+
