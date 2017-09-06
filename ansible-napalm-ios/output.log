@@ -1,4 +1,4 @@
-kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ansible                                            -playbook config.play -i inventory
+kenw@kenw-srv:~/src/central-orchestration-ausnog2017/ansible-napalm-ios$ ansible -playbook config.play -i inventory
 
 PLAY [Apply basic config] ******************************************************
 
